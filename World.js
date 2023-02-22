@@ -24,8 +24,9 @@ export default class World{
 
     wall(){
         const wall = new THREE.PlaneGeometry(100,100)
-        const col = new THREE.MeshBasicMaterial({color: 0xB67AF2});
+        const col = new THREE.MeshBasicMaterial({color: 0x26423f});
         const wal = new THREE.Mesh(wall,col)
+        wal.receiveShadow = true;
         this.scene.add(wal);
         wal.rotateX(-Math.PI)
         wal.rotateY(Math.PI)
@@ -33,10 +34,13 @@ export default class World{
     }
 
     lights(){
-        const light = new THREE.AmbientLight( 0x404040, 2 ); // soft white light
+        const light = new THREE.AmbientLight( 0x404040, 2 );
         this.scene.add( light );
         const dlight = new THREE.DirectionalLight(0x505050, 3);
-        dlight.position.set(2,2,2);
+        dlight.castShadow = true;
+        dlight.shadow.mapSize.set(2048,2048);
+        dlight.shadow.normalBias = 0.05;
+        dlight.position.set(10,7,10);
         this.scene.add(dlight)
     }
 

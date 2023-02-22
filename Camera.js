@@ -47,7 +47,6 @@ export default class Camera extends EventEmitter{
             this.pcamera.position.set(x , y , z )
           })
         project.ready.then(() => sheet.sequence.play({ iterationCount: 1 }))
-
     }
 
     resize(){
